@@ -1,0 +1,56 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "Node.js web application with Express.js, EJS templating, and Babel transpilation",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "build": "babel src --out-dir dist",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:single": "jest",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format:check": "prettier --check src/**/*.js",
+    "format": "prettier --write src/**/*.js",
+    "check": "npm run lint && npm run format:check && npm test && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.5",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.23.5",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1",
+    "supertest": "^6.3.3"
+  },
+  "keywords": ["nodejs", "express", "ejs", "mvc", "rest-api"],
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": ["@babel/preset-env"]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/app.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["text", "lcov", "html"]
+  }
+}

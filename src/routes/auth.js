@@ -24,7 +24,7 @@ router.post("/register", requireGuest, register);
 
 // POST /logout - Handle logout
 router.post("/logout", logout);
-
+ 
 // GET /me - Get current user (API endpoint)
 router.get("/me", requireAuth, getCurrentUser);
 

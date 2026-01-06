@@ -11,13 +11,13 @@ let users = [
     id: 1,
     name: "John Doe",
     email: "john@example.com",
-    password: "$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj6ukx.LFvOe", // password: "password123"
+    password: "$2b$12$CS4/HFPd870g1mXVsSpUmeayJTqi9h5PxsObpxV8Fm2lKkONLzPj6", // password: "123123"
   },
   {
-    id: 2,
+    id: 2, 
     name: "Jane Smith",
     email: "jane@example.com",
-    password: "$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj6ukx.LFvOe", // password: "password123"
+    password: "$2b$12$CS4/HFPd870g1mXVsSpUmeayJTqi9h5PxsObpxV8Fm2lKkONLzPj6", // password: "123123"
   },
 ];
 
@@ -103,7 +103,7 @@ const login = async (req, res, next) => {
     } else {
       req.session.error = error.message;
       req.session.formData = { email: req.body.email };
-      res.redirect("/login");
+      res.redirect("/auth/login");  
     }
   }
 };
@@ -136,7 +136,8 @@ const register = async (req, res, next) => {
 
     // Hash password
     const hashedPassword = await hashPassword(password);
-
+console.log("Hashed -----------Password:"); 
+console.log(hashedPassword);
     // Create new user
     const newUser = {
       id: nextId++,
@@ -173,7 +174,7 @@ const register = async (req, res, next) => {
     } else {
       req.session.error = error.message;
       req.session.formData = { name: req.body.name, email: req.body.email };
-      res.redirect("/register");
+      res.redirect("auth/register");
     }
   }
 };
@@ -193,7 +194,7 @@ const logout = (req, res) => {
         message: "Logout successful",
       });
     } else {
-      res.redirect("/login");
+      res.redirect("/auth/login"); 
     }
   });
 };
@@ -231,7 +232,8 @@ module.exports = {
   showLogin,
   showRegister,
   login,
-  register,
+  register, 
   logout,
   getCurrentUser,
+  users,
 };

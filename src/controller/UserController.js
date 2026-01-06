@@ -1,21 +1,9 @@
 const { ValidationError, NotFoundError } = require("../util/errors");
 const { hashPassword } = require("../util/auth");
+const { users } = require("../controller/AuthController");
 
 // In-memory storage for demo purposes - this is shared with AuthController
-let users = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    password: "$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj6ukx.LFvOe", // password: "password123"
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@example.com",
-    password: "$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj6ukx.LFvOe", // password: "password123"
-  },
-];
+
 
 let nextId = 3;
 

@@ -1,4 +1,4 @@
-const { ValidationError } = require('../util/errors');
+const { ValidationError } = require("../util/errors");
 
 const requestLogger = (req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
@@ -19,29 +19,29 @@ const validateRequest = (schema) => {
   };
 };
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res) => {
   if (err instanceof ValidationError) {
     return res.status(err.statusCode).json({
       success: false,
       error: {
         message: err.message,
-        code: 'VALIDATION_ERROR'
-      }
+        code: "VALIDATION_ERROR",
+      },
     });
   }
-  
-  console.error('Unexpected error:', err);
+
+  console.error("Unexpected error:", err);
   res.status(500).json({
     success: false,
     error: {
-      message: 'Internal server error',
-      code: 'INTERNAL_ERROR'
-    }
+      message: "Internal server error",
+      code: "INTERNAL_ERROR",
+    },
   });
 };
 
 module.exports = {
   requestLogger,
   validateRequest,
-  errorHandler
+  errorHandler,
 };

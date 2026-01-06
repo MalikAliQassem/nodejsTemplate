@@ -1,20 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const userController = require('../controller/UserController');
+const userController = require("../controller/UserController");
+const { requireAuth } = require("../middleware/auth");
 
-// User routes
-router.get('/users', userController.getUsers);
-router.get('/users/:id', userController.getUserById);
-router.post('/users', userController.createUser);
-router.put('/users/:id', userController.updateUser);
-router.delete('/users/:id', userController.deleteUser);
+// User routes (protected)
+router.get("/users", requireAuth, userController.getUsers);
+router.get("/users/:id", requireAuth, userController.getUserById);
+router.post("/users", requireAuth, userController.createUser);
+router.put("/users/:id", requireAuth, userController.updateUser);
+router.delete("/users/:id", requireAuth, userController.deleteUser);
 
 // Health check
-router.get('/health', (req, res) => {
+router.get("/health", (req, res) => {
   res.json({
     success: true,
-    message: 'API is running',
-    timestamp: new Date().toISOString()
+    message: "API is running",
+    timestamp: new Date().toISOString(),
   });
 });
 

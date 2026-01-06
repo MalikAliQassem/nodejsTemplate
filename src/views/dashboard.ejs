@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - TestApp</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+    }
+    
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .navbar .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .navbar .user-name {
+      color: #333;
+      font-weight: 500;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #5a6fd8;
+    }
+    
+    .btn-danger {
+      background: #e74c3c;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background: #c0392b;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card h2 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    
+    .card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .welcome {
+      text-align: center;
+      padding: 3rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    
+    .welcome h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .welcome p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .stat {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+    }
+    
+    .stat .number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .stat .label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TestApp</div>
+    <div class="user-info">
+      <span class="user-name">Welcome, <%= userName %>!</span>
+      <form method="POST" action="/logout" style="display: inline;">
+        <button type="submit" class="btn btn-danger">Logout</button>
+      </form>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="welcome">
+      <h1>Welcome to Your Dashboard, <%= userName %>!</h1>
+      <p>You have successfully logged in to TestApp.</p>
+    </div>
+    
+    <div class="dashboard">
+      <div class="card">
+        <h2>Account Information</h2>
+        <p>Your account is active and secure. You can manage your profile and settings from here.</p>
+        <div class="stats">
+          <div class="stat">
+            <div class="number">1</div>
+            <div class="label">Active Session</div>
+          </div>
+          <div class="stat">
+            <div class="number">100%</div>
+            <div class="label">Profile Complete</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Quick Actions</h2>
+        <p>Access common features and manage your account:</p>
+        <div style="margin-top: 1rem;">
+          <a href="/api/users" class="btn btn-primary" style="margin-right: 0.5rem;">View Users API</a>
+          <form method="POST" action="/logout" style="display: inline-block;">
+            <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

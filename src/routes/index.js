@@ -1,17 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+// const { requireAuth, requireGuest } = require("../middleware/auth");
 
-router.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Welcome to TestApp',
-    message: 'Hello from Express.js with EJS!'
-  });
+// GET / - Home page (redirects based on auth status)
+router.get("/", (req, res) => {
+  if (req.session.userId) {
+    res.redirect("/dashboard");
+  } else {
+    res.redirect("auth/login");
+  }
 });
 
-router.get('/about', (req, res) => {
-  res.render('about', {
-    title: 'About TestApp',
-    description: 'A Node.js application following MVC architecture'
+// GET /about - About page
+router.get("/about", (req, res) => {
+  res.render("about", {
+    title: "About TestApp",
+    description: "A Node.js application following MVC architecture",
   });
 });
 
